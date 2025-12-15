@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jess and Jamie</title>
@@ -26,6 +27,7 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Raleway', serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -33,7 +35,7 @@
 
     a {
       color: inherit;
-      text-decoration: none;
+      text-decoration: underline;
     }
 
     header {
@@ -79,6 +81,10 @@
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--border);
       z-index: 10;
+    }
+
+    nav a {
+      text-decoration: none;
     }
 
     nav ul {
@@ -202,7 +208,7 @@
   <header id="home">
     <div style="position: relative; z-index: 1;">
       <h1>Jess & Jamie</h1>
-      <p>are getting married! · 78 August 2022 · Canterbury/Dargate, Kent</p>
+      <p>... Are getting married! · 78 August 2022 · Canterbury/Dargate, Kent</p>
       <a href="#rsvp"><button>RSVP</button></a>
     </div>
   </header>
@@ -259,23 +265,66 @@
         </div>
         <button type="submit">Send RSVP</button>
       </form>
+
+
     </div>
   </section>
+
+<script>
+const form = document.getElementById('rsvpForm');
+const endpoint = 'https://script.google.com/macros/s/AKfycbyGTxc-nHC7SteGbIl9h36An-jbeXqGKkDZOaaUhkPgnu1qjmPr1cdPPOmrUk4KJKdA/exec'; // replace with your updated Web App URL
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const formData = {};
+  data.forEach((value, key) => formData[key] = value);
+
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      body: new URLSearchParams(formData),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    });
+
+    // Debugging: log the raw response
+    const text = await res.text();
+    console.log("Raw response from server:", text);
+
+    const result = JSON.parse(text);
+
+    if(result.result === 'success'){
+      alert('Thank you for your RSVP!');
+      form.reset();
+    } else if(result.result === 'duplicate'){
+      alert('You already responded with this email. Please contact Jess or Jamie if you need to update your response.');
+    } else {
+      alert('There was an error submitting your RSVP. Please try again.');
+    }
+
+  } catch(err) {
+    alert('There was an error submitting your RSVP. Please try again.');
+    console.error(err);
+  }
+});
+</script>
 
   <section id="guide">
     <h2>Local Area</h2>
     <div class="grid">
       <div class="card">
         <h3>Getting There</h3>
-        <p>Nearby train stations include Canterbury West, Whitstable and Faversham.</p>
+        <p>Direct trains from St Pancras/Victoria/London Bridge go to Whitstable/Faversham/Canterbury in 1-1.5hr.</p>
       </div>
       <div class="card">
         <h3>Things to Do</h3>
-        <p>Whitstable is a lovely seaside town, famous for Oysters. Canterbury</p>
+        <p><a href='https://www.timeout.com/whitstable/things-to-do/a-perfect-day-in-whitstable'>Whitstable</a> is a seaside town with a lovely high street, shingle beaches and an active harbour. <a href="'https://www.canterbury.co.uk/">Canterbury</a> is a very historical city with a lot of beautiful architecture.</p>
       </div>
       <div class="card">
         <h3>Food & Drink</h3>
-        <p>Our favourites include Trattoria Cammillo, La Ménagère, and a gelato from Gelateria dei Neri.</p>
+        <p>Our favourites include <a href="https://www.thelobstershack.co.uk/">the Lobster Shack</a> and <a href = 'https://tudortearooms.co.uk'>Tudor Tea Rooms</a> (for ham, egg and chips). Plenty of gastropubs in the area.</p>
       </div>
     </div>
   </section>
@@ -284,16 +333,16 @@
     <h2>Accommodation</h2>
     <div class="grid">
       <div class="card">
-        <h3>Hotel Brunelleschi</h3>
-        <p>Elegant and central, close to the Duomo.</p>
+        <h3>Hotels</h3>
+        <p>Top-end hotels include <a href = 'https://www.thepighotel.com/at-bridge-place/'>The Pig</a> and <a href="'https://www.crescentturner.co.uk/">Crescent Turner</a>. There is also a <a href="'https://www.travelodge.co.uk/hotels/21/Canterbury-Whitstable-hotel?checkIn=23/12/2025&checkOut=24/12/2025&rooms[0][adults]=2&rooms[0][children]=0&utm_source=GHF&utm_medium=GHF&utm_campaign=GB0718GHF&WT_tsrc=GHF&utm_content=PPA=0&gad_source=6&gad_campaignid=1916190844&gclid=Cj0KCQiAgP_JBhD-ARIsANpEMxzDdc1nMmrtiZQKSaNyMa6MCUyZAC2cqahYQnlE-r6SqepQPGkdpzAaAj_3EALw_wcB">Travelodge</a> and <a href="'https://www.ihg.com/hotels/gb/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sAV&qIta=99618783&icdv=99618783&glat=META&qSlH=CTBUK&qRms=1&qAdlt=2&qChld=0&qCiD=22&qCiMy=022026&qCoD=26&qCoMy=022026&qrtPt=64.17&setPMCookies=true&qSlRc=CSTN&qRtP=IDAPF&qSHBrC=EX&qDest=Upper%20Harbledown,%20Canterbury,%20GB&partnerVerification=false&channel=GHPA&userSelectedRatePlan=CSTNIDAPF&userBookingWindow=97&hmGUID=a8ead3cb-f131-4368-8539-72b7346be692&clk_src=bl&isHotelCampaign=true&partnerRateShown=64.17&partnerDateType=default&mktgvar=hpa_paid_GB_desktop_CTBUK_mapresults_4_GBP_2026-03-22_default_19735841676__FALSE_CSTNIDAPF&userCountryCode=GB&partnerTotalRateShown=308.00&userDeviceType=desktop&adjustMonth=true&partnerClickType=hotel&partnerCurrencyCode=GBP&partnerAdSite=mapresults&gclid=Cj0KCQiAgP_JBhD-ARIsANpEMxyETsieeFxAI_CuRq5bWmF1Q5FerpZ5vsTGEZWusAXRDYiDhQQdIecaAqigEALw_wcB&cm_mmc=hpa_paid_META_EX_CTBUK_desktop&partnerAdType=paid&srb_u=1&qRmFltr=">Holiday Inn Express</a> within 10 min drive.</p>
       </div>
       <div class="card">
-        <h3>Hotel Lungarno</h3>
-        <p>Beautiful riverside hotel with views of the Arno.</p>
+        <h3>Campsites</h3>
+        <p>Camping and glamping options are available at <a href="https://brookfarmcamping.co.uk/">Brook Farm</a>, <a href="'https://www.rosewoodcamping.co.uk/">Rosewood</a> and <a href='https://www.hipcamp.com/en-GB/land/england-kent-chapter-farm-glamping-ex9hqnjv?adults=1&children=0&srid=ebf7ee4e-5ff4-4ae5-a199-cfb75a690a55'>Chapter Farm</a>.</p>
       </div>
       <div class="card">
-        <h3>Airbnb</h3>
-        <p>Plenty of apartments available throughout the historic centre.</p>
+        <h3>Airbnbs</h3>
+        <p>Plenty of airbnbs available nearby, or Whitstable (seaside) and Canterbury are each 15 mins away and lovely places to stay.</p>
       </div>
     </div>
   </section>
@@ -301,14 +350,5 @@
   <footer>
     <p>With love, Jess & Jamie</p>
   </footer>
-
-  <script>
-    const form = document.getElementById('rsvpForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you for your RSVP!');
-      form.reset();
-    });
-  </script>
 </body>
 </html>
