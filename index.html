@@ -192,6 +192,23 @@
         flex-wrap: wrap;
       }
     }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+
+      opacity: 0;
+      transform: translateY(50px);
+
+      animation: fadeUp 1.2s ease-out forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -205,13 +222,14 @@
     </ul>
   </nav>
 
-  <header id="home">
-    <div style="position: relative; z-index: 1;">
-      <h1>Jess & Jamie</h1>
-      <p>... Are getting married! · 15 August 2026 · Canterbury/Dargate, Kent</p>
-      <a href="#rsvp"><button>RSVP</button></a>
-    </div>
-  </header>
+<header id="home">
+  <div class="hero-content">
+    <h1>Jess & Jamie</h1>
+    <p>... Are getting married! · 78 August 2022 · Canterbury/Dargate, Kent</p>
+    <a href="#rsvp"><button>RSVP</button></a>
+  </div>
+</header>
+
 
   <section id="schedule">
     <h2>The Day</h2>
