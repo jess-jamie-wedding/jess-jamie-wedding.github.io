@@ -210,7 +210,7 @@
     /* Container */
     .scroll-indicator {
       position: absolute;
-      bottom: 30px;
+      bottom: 10%;
       left: 50%;
       transform: translateX(-50%);
     }
@@ -220,8 +220,8 @@
       display: block;
       width: 18px;
       height: 18px;
-      border-right: 2px solid #fff;
-      border-bottom: 2px solid #fff;
+      border-right: 2px solid #333;
+      border-bottom: 2px solid #333;
       transform: rotate(45deg);
       animation: bounce 2s infinite;
       opacity: 0.8;
@@ -281,7 +281,7 @@
     <hr class="section-separator">
     <h2>Please share your details</h2>
     <div class="card">
-      <form id="rsvpForm">
+      <form id="DetailsForm">
         <div>
           <label for="name">Name(s)</label>
           <input id="name" name="name" required />
@@ -306,8 +306,8 @@
   </section>
 
 <script>
-const form = document.getElementById('rsvpForm');
-const endpoint = 'https://script.google.com/macros/s/AKfycbyGTxc-nHC7SteGbIl9h36An-jbeXqGKkDZOaaUhkPgnu1qjmPr1cdPPOmrUk4KJKdA/exec'; // replace with your updated Web App URL
+const form = document.getElementById('DetailsForm');
+const endpoint = 'https://script.google.com/macros/s/AKfycbz7g0BMRBG_3bRKtEtyPx1HHKJmuepkx-Kbvzckz1J7W4XUnoVpYkT7MKCvnmRKRUI/exec'; // replace with your updated Web App URL
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -331,16 +331,16 @@ form.addEventListener('submit', async (e) => {
     const result = JSON.parse(text);
 
     if(result.result === 'success'){
-      alert('Thank you for your RSVP!');
+      alert('Thanks very much!');
       form.reset();
     } else if(result.result === 'duplicate'){
       alert('You already responded with this email. Please contact Jess or Jamie if you need to update your response.');
     } else {
-      alert('There was an error submitting your RSVP. Please try again.');
+      alert('There was an error submitting your details. Please try again, or contact Jess/Jamie.');
     }
 
   } catch(err) {
-    alert('There was an error submitting your RSVP. Please try again.');
+    alert('There was an error submitting your details. Please try again, or contact Jess/Jamie.');
     console.error(err);
   }
 });
