@@ -48,7 +48,7 @@
       padding: 2rem;
 
       background-color: #e9e6df;
-      background-image: url("hebrides.jpg");
+      background-image: url("the-dove.jpg");
       background-size: cover;
       background-position: center;
 
@@ -59,7 +59,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(255, 255, 255, 0.7); /* increase for lower image visibility */
+      background: rgba(255, 255, 255, 0.7);
     }
 
 
@@ -68,6 +68,8 @@
       font-weight: 500;
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
+      color: #333;
+
     }
 
     header p {
@@ -194,14 +196,60 @@
         flex-wrap: wrap;
       }
     }
-    .hero-content {
-      position: relative;
-      z-index: 1;
+    
+    .hero-content { 
+      position: relative; 
+      z-index: 1; 
+      opacity: 0; 
+      transform: translateY(50px); 
+      animation: 
+      fadeUp 1.2s ease-out forwards; 
+    }
 
-      opacity: 0;
-      transform: translateY(50px);
 
-      animation: fadeUp 1.2s ease-out forwards;
+    /* Container */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Arrow */
+    .scroll-indicator span {
+      display: block;
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg);
+      animation: bounce 2s infinite;
+      opacity: 0.8;
+    }
+
+    .section-separator {
+      border: none;
+      height: 1px;
+      width: 80px;
+      margin: 4rem auto;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+
+    /* Animation */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translateY(10px) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 0.5;
+      }
     }
 
     @keyframes fadeUp {
@@ -214,57 +262,28 @@
   </style>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#schedule">Schedule</a></li>
-      <li><a href="#rsvp">RSVP</a></li>
-      <li><a href="#guide">Local Guide</a></li>
-      <li><a href="#stay">Accommodation</a></li>
-    </ul>
-  </nav>
 
 <header id="home">
   <div class="hero-content">
-    <h1>Jess & Jamie</h1>
-    <p>... Are getting married! · 15 August 2026 · Canterbury/Dargate, Kent</p>
-    <a href="#rsvp"><button>RSVP</button></a>
+    <h1>Save the date!</h1>
+  </div>
+    <div class="scroll-indicator">
+    <span></span>
   </div>
 </header>
 
-
-  <section id="schedule">
-    <h2>The Day</h2>
-    <div class="card">
-      <div class="schedule-item">
-        <span class="time">13:00</span>
-        <span>Ceremony at St Dunstan's Church, Canterbury</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">14:30</span>
-        <span>Coaches to The Dove, Dargate</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">15:00</span>
-        <span>Drinks and canapes</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">18:30</span>
-        <span>BBQ</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">19:00-00:00</span>
-        <span>Live music and dancing</span>
-      </div>
-    </div>
-  </section>
+<section id="details" style='margin-bottom: 1rem;'>
+    <h2>Jess and Jamie's Wedding</h2>
+    <h2 style='margin-bottom: 0rem;'>15 August 2026 · Canterbury/Dargate, Kent</h2>
+</section>
 
   <section id="rsvp">
-    <h2>RSVP</h2>
+    <hr class="section-separator">
+    <h2>Please share your details</h2>
     <div class="card">
       <form id="rsvpForm">
         <div>
-          <label for="name">Name</label>
+          <label for="name">Name(s)</label>
           <input id="name" name="name" required />
         </div>
         <div>
@@ -272,18 +291,14 @@
           <input id="email" type="email" name="email" required />
         </div>
         <div>
-          <label for="attendance">Will you attend?</label>
-          <select id="attendance" name="attendance" required>
-            <option value="">Please select</option>
-            <option value="yes">Joyfully accept</option>
-            <option value="no">Regretfully decline</option>
-          </select>
+          <label for="phone">Phone</label>
+          <input id="phone" type="phone" name="phone" required />
         </div>
         <div>
-          <label for="notes">Dietary requirements / notes</label>
-          <textarea id="notes" name="notes" rows="3"></textarea>
+          <label for="address">Address (to post invite)</label>
+          <textarea id="address" name="address" rows="4"></textarea>
         </div>
-        <button type="submit">Send RSVP</button>
+        <button type="submit">Send info</button>
       </form>
 
 
@@ -331,44 +346,8 @@ form.addEventListener('submit', async (e) => {
 });
 </script>
 
-  <section id="guide">
-    <h2>Local Area</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Getting There</h3>
-        <p>Direct trains from St Pancras/Victoria/London Bridge go to Whitstable/Faversham/Canterbury in 1-1.5hr.</p>
-      </div>
-      <div class="card">
-        <h3>Things to Do</h3>
-        <p><a href='https://www.timeout.com/whitstable/things-to-do/a-perfect-day-in-whitstable'>Whitstable</a> is a seaside town with a lovely high street, shingle beaches and an active harbour. <a href="'https://www.canterbury.co.uk/">Canterbury</a> is a very historical city with a lot of beautiful architecture.</p>
-      </div>
-      <div class="card">
-        <h3>Food & Drink</h3>
-        <p>Our favourites include <a href="https://www.thelobstershack.co.uk/">the Lobster Shack</a> and <a href = 'https://tudortearooms.co.uk'>Tudor Tea Rooms</a> (for ham, egg and chips). Plenty of gastropubs in the area.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="stay">
-    <h2>Accommodation</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Hotels</h3>
-        <p>Top-end hotels include <a href = 'https://www.thepighotel.com/at-bridge-place/'>The Pig</a> and <a href="'https://www.crescentturner.co.uk/">Crescent Turner</a>. There is also a <a href="'https://www.travelodge.co.uk/hotels/21/Canterbury-Whitstable-hotel?checkIn=23/12/2025&checkOut=24/12/2025&rooms[0][adults]=2&rooms[0][children]=0&utm_source=GHF&utm_medium=GHF&utm_campaign=GB0718GHF&WT_tsrc=GHF&utm_content=PPA=0&gad_source=6&gad_campaignid=1916190844&gclid=Cj0KCQiAgP_JBhD-ARIsANpEMxzDdc1nMmrtiZQKSaNyMa6MCUyZAC2cqahYQnlE-r6SqepQPGkdpzAaAj_3EALw_wcB">Travelodge</a> and <a href="'https://www.ihg.com/hotels/gb/en/find-hotels/select-roomrate?fromRedirect=true&qSrt=sAV&qIta=99618783&icdv=99618783&glat=META&qSlH=CTBUK&qRms=1&qAdlt=2&qChld=0&qCiD=22&qCiMy=022026&qCoD=26&qCoMy=022026&qrtPt=64.17&setPMCookies=true&qSlRc=CSTN&qRtP=IDAPF&qSHBrC=EX&qDest=Upper%20Harbledown,%20Canterbury,%20GB&partnerVerification=false&channel=GHPA&userSelectedRatePlan=CSTNIDAPF&userBookingWindow=97&hmGUID=a8ead3cb-f131-4368-8539-72b7346be692&clk_src=bl&isHotelCampaign=true&partnerRateShown=64.17&partnerDateType=default&mktgvar=hpa_paid_GB_desktop_CTBUK_mapresults_4_GBP_2026-03-22_default_19735841676__FALSE_CSTNIDAPF&userCountryCode=GB&partnerTotalRateShown=308.00&userDeviceType=desktop&adjustMonth=true&partnerClickType=hotel&partnerCurrencyCode=GBP&partnerAdSite=mapresults&gclid=Cj0KCQiAgP_JBhD-ARIsANpEMxyETsieeFxAI_CuRq5bWmF1Q5FerpZ5vsTGEZWusAXRDYiDhQQdIecaAqigEALw_wcB&cm_mmc=hpa_paid_META_EX_CTBUK_desktop&partnerAdType=paid&srb_u=1&qRmFltr=">Holiday Inn Express</a> within 10 min drive.</p>
-      </div>
-      <div class="card">
-        <h3>Campsites</h3>
-        <p>Camping and glamping options are available at <a href="https://brookfarmcamping.co.uk/">Brook Farm</a>, <a href="'https://www.rosewoodcamping.co.uk/">Rosewood</a> and <a href='https://www.hipcamp.com/en-GB/land/england-kent-chapter-farm-glamping-ex9hqnjv?adults=1&children=0&srid=ebf7ee4e-5ff4-4ae5-a199-cfb75a690a55'>Chapter Farm</a>.</p>
-      </div>
-      <div class="card">
-        <h3>Airbnbs</h3>
-        <p>Plenty of airbnbs available nearby, or Whitstable (seaside) and Canterbury are each 15 mins away and lovely places to stay.</p>
-      </div>
-    </div>
-  </section>
-
   <footer>
-    <p>Can't wait to see you all! Jess & Jamie</p>
+    <p>Can't wait to celebrate with you all! Jess & Jamie</p>
   </footer>
 </body>
 </html>
