@@ -153,7 +153,7 @@
       gap: 1.5rem;
     }
 
-    /* Schedule */
+    /* Schedule
     .schedule-item {
       display: flex;
       justify-content: space-between;
@@ -170,6 +170,59 @@
     .time {
       font-weight: 500;
     }
+
+    /* Schedule */
+  .schedule-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    row-gap: 0.4rem;
+
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  .schedule-item:last-child {
+    border-bottom: none;
+  }
+
+  .schedule-row {
+    display: contents;
+  }
+
+  .time {
+    font-weight: 500;
+    grid-column: 1;
+  }
+
+  /* Right column content aligned to the right */
+  .title,
+  .schedule-details {
+    grid-column: 2;
+    text-align: right;
+  }
+
+  .schedule-details {
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .schedule-details p {
+    margin: 0;
+  }
+
+  .schedule-details p + p {
+      margin-top: 0.25rem;
+    }
+
+  #schedule h3 {
+    font-style: italic;
+    font-weight: 200;
+    text-align: center;
+  }
+
+
+
 
     /* RSVP */
     form {
@@ -307,32 +360,38 @@
   </div>
 </header>
 
+<section id="schedule">
+  <h2>The Day</h2>
 
-  <section id="schedule">
-    <h2>The Day</h2>
-    <div class="card">
-      <div class="schedule-item">
-        <span class="time">13:00</span>
-        <span>Ceremony at St Dunstan's Church, Canterbury</span>
+  <div class="card">
+
+    <div class="schedule-item">
+      <div class="schedule-row">
+        <span class="time">12:45</span>
+        <span class="title">Ceremony at St Dunstan's Church, Canterbury</span>
       </div>
-      <div class="schedule-item">
-        <span class="time">14:30</span>
-        <span>Coaches to The Dove, Dargate</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">15:00</span>
-        <span>Drinks and canapes</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">18:30</span>
-        <span>BBQ</span>
-      </div>
-      <div class="schedule-item">
-        <span class="time">19:00-00:00</span>
-        <span>Live music and dancing</span>
+      <div class="schedule-details">
+        <p>Please arrive by 12:30 to be seated by 12:45.</p>
+        <p>Please note there is no guest parking at the church.</p>
       </div>
     </div>
-  </section>
+
+    <div class="schedule-item">
+      <div class="schedule-row">
+        <span class="time">15:00 – Late</span>
+        <span class="title">Reception at The Dove, Dargate</span>
+      </div>
+      <div class="schedule-details">
+        <p>We will arrange coaches to take us all from the church to the Dove.</p>
+        <p>Please expect canapes on arrival, and a BBQ dinner later on in the day!</p>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>More details to follow in Spring...</h3>
+</section>
+
 
   <section id="rsvp">
     <h2>RSVP</h2>
