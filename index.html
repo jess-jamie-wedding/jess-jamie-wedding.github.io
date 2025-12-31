@@ -153,28 +153,10 @@
       gap: 1.5rem;
     }
 
-    /* Schedule
-    .schedule-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.95rem;
-    }
-
-    .schedule-item:last-child {
-      border-bottom: none;
-    }
-
-    .time {
-      font-weight: 500;
-    }
-
     /* Schedule */
   .schedule-item {
     display: grid;
-    grid-template-columns: 90px 1fr;
+    grid-template-columns: 1fr 90px;
     row-gap: 0.4rem;
 
     padding: 0.75rem 0;
@@ -192,18 +174,19 @@
 
   .time {
     font-weight: 500;
-    grid-column: 1;
-  }
-
-  /* Right column content aligned to the right */
-  .title {
     grid-column: 2;
     text-align: right;
   }
 
+  /* Right column content aligned to the right */
+  .title {
+    grid-column: 1;
+    text-align: left;
+  }
+
   .schedule-details {
     grid-column: 1 / -1; /* spans all columns */
-    text-align: right;
+    text-align: left;
   }
 
   .schedule-details {
