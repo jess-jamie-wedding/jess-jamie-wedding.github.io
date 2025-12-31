@@ -15,6 +15,7 @@
       --accent: #b7a57a; /* soft champagne */
       --card: #ffffff;
       --border: #e6e6e6;
+      --title: #292e28;
     }
 
     * {
@@ -83,7 +84,14 @@
       letter-spacing: 0.05em;
       margin-bottom: 0.5rem;
       font-family: 'Cormorant Garamond', serif;
+      color: var(--title)
 
+    }
+
+    header h2 {
+      color: var(--title);
+      font-size: 1.5rem;
+      font-weight: 100;
     }
 
     header p {
@@ -188,7 +196,7 @@
       border: none;
       background: var(--accent);
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       letter-spacing: 0.05em;
       cursor: pointer;
       font-family: 'Cormorant Garamond', serif;
@@ -286,7 +294,7 @@
 <header id="home">
   <div class="hero-content">
     <h1>JESS & JAMIE</h1>
-    <p>... Are getting married! · 15 August 2026 · Canterbury/Dargate, Kent</p>
+    <h2>15 August 2026 · Canterbury/Dargate, Kent</h2>
     <a href="#rsvp"><button>RSVP</button></a>
   </div>
   <div class="scroll-indicator">
@@ -426,6 +434,16 @@ form.addEventListener('submit', async (e) => {
         <h3>Airbnbs</h3>
         <p>Plenty of airbnbs available nearby, or Whitstable (seaside) and Canterbury are each 15 mins away and lovely places to stay.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="FAQs">
+    <h2>FAQs</h2>
+    <div>
+      <h3>What should I wear?</h3>
+      <p>TBD</p>
+      <h3>How will I get around?</h3>
+      <p>Please make your own way to the ceremony, the church is walking distance from Canterbury station. After the ceremony we will arrange transport for everybody to The Dove. Please expect to book taxis home around 11:45.</p>
     </div>
   </section>
 
