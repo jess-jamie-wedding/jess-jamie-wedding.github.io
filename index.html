@@ -196,9 +196,13 @@
   }
 
   /* Right column content aligned to the right */
-  .title,
-  .schedule-details {
+  .title {
     grid-column: 2;
+    text-align: right;
+  }
+
+  .schedule-details {
+    grid-column: 1 / -1; /* spans all columns */
     text-align: right;
   }
 
@@ -219,6 +223,7 @@
     font-style: italic;
     font-weight: 200;
     text-align: center;
+    font-size: 0.95rem;
   }
 
 
