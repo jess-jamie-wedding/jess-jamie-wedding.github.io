@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="hebrides.jpg">
+  <link rel="preload" as="image" href="logo_black.PNG">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jess and Jamie</title>
@@ -25,6 +25,11 @@
     html {
       scroll-behavior: smooth;
     }
+
+    body:not(.loaded) .hero-content {
+      visibility: hidden;
+    }
+
 
     body {
       margin: 0;
@@ -114,11 +119,13 @@
 
     header img {
       width: 30%;
+      height: auto;
     }
     
     @media (max-width: 768px) {
       header img {
         width: 70%;
+        height: auto;
       }
     }
 
@@ -247,13 +254,16 @@
         font-size: 0.9rem;
       }
     }
+
     .hero-content {
       position: relative;
       z-index: 1;
 
       opacity: 0;
       transform: translateY(50px);
+    }
 
+    .hero-content.animate-in {
       animation: fadeUp 1.2s ease-out forwards;
     }
 
@@ -308,6 +318,8 @@
 
   </style>
 </head>
+
+
 <body>
   <nav>
     <ul>
@@ -321,7 +333,13 @@
 
 <header id="home">
   <div class="hero-content">
-    <img src="logo_black.PNG">
+    <img
+      src="logo_black.PNG"
+      width="670"
+      height="500"
+      alt="Jess and Jamie"
+    />
+
     <h2>15 August 2026</h2>
     <h2>Canterbury/Dargate, Kent</h2>
     <a href="#rsvp"><button>RSVP</button></a>
@@ -409,7 +427,7 @@ form.addEventListener('submit', async (e) => {
     const result = JSON.parse(text);
 
     if(result.result === 'success'){
-      alert("Thank you for your RSVP! Please check your inbox for a confirmation email to ensure we have your details right!");
+      alert("Thank you for your RSVP! Please check your inbox (may take a moment) for a confirmation email to ensure we have your details right!");
       form.reset();
     } else if(result.result === 'duplicate'){
       alert('You already responded with this email. Please contact Jess or Jamie if you need to update your response.');
@@ -474,5 +492,37 @@ form.addEventListener('submit', async (e) => {
   <footer>
     <p>Can't wait to celebrate with you all! Jess & Jamie</p>
   </footer>
+
+<script>
+  window.addEventListener('load', () => {
+    const hero = document.querySelector('.hero-content');
+    if (!hero) return;
+
+    // Wait for the image inside the hero to fully decode
+    const img = hero.querySelector('img');
+    if (img) {
+      img.decode().then(() => {
+        // Show hero after image is ready
+        document.body.classList.add('loaded');
+
+        // Start animation
+        setTimeout(() => {
+          hero.classList.add('animate-in');
+        }, 100); // small delay for polish
+      }).catch(() => {
+        // Fallback: if decode fails, just show anyway
+        document.body.classList.add('loaded');
+        hero.classList.add('animate-in');
+      });
+    } else {
+      // No image? just show hero
+      document.body.classList.add('loaded');
+      hero.classList.add('animate-in');
+    }
+  });
+</script>
+
+
+
 </body>
 </html>
