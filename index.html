@@ -411,6 +411,12 @@ const endpoint = 'https://script.google.com/macros/s/AKfycbyKEeiKahEV53hX-QWtP8S
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  // Disable button and change its color
+  submitButton.disabled = true;
+  submitButton.style.background = '#999'; // greyed out
+
   const data = new FormData(form);
   const formData = {};
   data.forEach((value, key) => formData[key] = value);
@@ -424,7 +430,6 @@ form.addEventListener('submit', async (e) => {
       }
     });
 
-    // Debugging: log the raw response
     const text = await res.text();
     console.log("Raw response from server:", text);
 
@@ -433,8 +438,6 @@ form.addEventListener('submit', async (e) => {
     if(result.result === 'success'){
       alert("Thank you for your RSVP! Please check your inbox (may take 5+ mins) for a confirmation email to ensure we have your details right!");
       form.reset();
-    } else if(result.result === 'duplicate'){
-      alert('You already responded with this email, so your response has been overwritten. Please check your emails for confirmation.');
     } else {
       alert('There was an error submitting your RSVP. Please try again.');
     }
@@ -442,8 +445,13 @@ form.addEventListener('submit', async (e) => {
   } catch(err) {
     alert('There was an error submitting your RSVP. Please try again.');
     console.error(err);
+  } finally {
+    // Re-enable button and restore original color after alert
+    submitButton.disabled = false;
+    submitButton.style.background = ''; // resets to original CSS var(--accent)
   }
 });
+
 </script>
 
   <section id="guide">
