@@ -364,7 +364,7 @@
           <input id="name" name="name" required />
         </div>
         <div>
-          <label for="email">Email</label>
+          <label for="email">Email (please use a unique email for each person)</label>
           <input id="email" type="email" name="email" required />
         </div>
         <div>
@@ -407,7 +407,7 @@
 
 <script>
 const form = document.getElementById('rsvpForm');
-const endpoint = 'https://script.google.com/macros/s/AKfycbzLZsCBz_GPiSWsjhS3iVlt6IAZFX8u_Fl8_B57wO4twT17UjbGcBNJEa8Gb2Qdx3sH/exec'; // replace with your updated Web App URL
+const endpoint = 'https://script.google.com/macros/s/AKfycbwFbBeJ9cvuU-pIS7fJuWJXhuu8wdaycMcBvGAI1QeUv90J01IBKzuwBPcwiwyNeVDt/exec;' // replace with your updated Web App URL
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -431,10 +431,10 @@ form.addEventListener('submit', async (e) => {
     const result = JSON.parse(text);
 
     if(result.result === 'success'){
-      alert("Thank you for your RSVP! Please check your inbox (may take a moment) for a confirmation email to ensure we have your details right!");
+      alert("Thank you for your RSVP! Please check your inbox (may take 5+ mins) for a confirmation email to ensure we have your details right!");
       form.reset();
     } else if(result.result === 'duplicate'){
-      alert('You already responded with this email. Please contact Jess or Jamie if you need to update your response.');
+      alert('You already responded with this email, so your response has been overwritten. Please check your emails for confirmation.');
     } else {
       alert('There was an error submitting your RSVP. Please try again.');
     }
